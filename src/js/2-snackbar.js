@@ -30,7 +30,8 @@ document.addEventListener("DOMContentLoaded", function() {
             message: `✅ Fulfilled promise in ${delay}ms`,
             position: "topRight",
           });
-        },
+        }
+      ).catch(
         (delay) => {
           iziToast.error({
             title: "Notification",

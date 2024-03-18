@@ -1,4 +1,5 @@
- import flatpickr from "flatpickr";
+
+import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
@@ -25,6 +26,9 @@ const options = {
 
 flatpickr("#datetime-picker", options);
 
+// Disable the button by default
+document.getElementById('start-button').disabled = true;
+
 document.getElementById('start-button').addEventListener('click', startTimer);
 
 function startTimer() {
@@ -39,7 +43,7 @@ function startTimer() {
   }
   document.getElementById('datetime-picker').disabled = true;
   document.getElementById('start-button').disabled = true;
-  const timerInterval = setInterval(updateTimer, 1000, selectedDate, timerInterval);
+  const timerInterval = setInterval(() => updateTimer(selectedDate, timerInterval), 1000);
   updateTimer(selectedDate, timerInterval);
 }
 
@@ -52,6 +56,7 @@ function updateTimer(selectedDate, timerInterval) {
       message: 'Countdown timer has finished!'
     });
     document.getElementById('datetime-picker').disabled = false;
+    document.getElementById('start-button').disabled = true;
     return;
   }
   const { days, hours, minutes, seconds } = convertMs(difference);
