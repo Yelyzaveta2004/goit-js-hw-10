@@ -1,8 +1,8 @@
 
 import flatpickr from "flatpickr";
-import "flatpickr/dist/flatpickr.min.css";
+import "./node_modules/flatpickr/dist/flatpickr.min.css";
 import iziToast from "izitoast";
-import "izitoast/dist/css/iziToast.min.css";
+import "./node_modules/izitoast/dist/css/iziToast.min.css";
 
 const options = {
   enableTime: true,
@@ -56,7 +56,7 @@ function startTimer() {
   updateTimer(selectedDate, timerInterval);
 }
 
-/*function updateTimer(selectedDate, timerInterval) {
+function updateTimer(selectedDate, timerInterval) {
   const difference = selectedDate - new Date();
   if (difference <= 0) {
     clearInterval(timerInterval);
@@ -73,23 +73,8 @@ function startTimer() {
   document.getElementById('hours').textContent = addLeadingZero(hours);
   document.getElementById('minutes').textContent = addLeadingZero(minutes);
   document.getElementById('seconds').textContent = addLeadingZero(seconds);
-}*/
-document.querySelector('[data-start]').addEventListener('click', () => {
-  const intervalId = setInterval(() => {
-    const timeLeft = userSelectedDate - new Date();
-    if (timeLeft <= 0) {
-      clearInterval(intervalId);
-      document.querySelector('[data-start]').disabled = true;
-      document.querySelector('#datetime-picker').disabled = true;
-    } else {
-      const time = convertMs(timeLeft);
-      document.querySelector('[data-days]').textContent = time.days;
-      document.querySelector('[data-hours]').textContent = time.hours;
-      document.querySelector('[data-minutes]').textContent = time.minutes;
-      document.querySelector('[data-seconds]').textContent = time.seconds;
-    }
-  }, 1000);
-});
+}
+
 
 function convertMs(ms) {
   const second = 1000;
