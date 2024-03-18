@@ -9,7 +9,7 @@ const options = {
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  onClose(selectedDates) {
+  /*onClose(selectedDates) {
     const selectedDate = selectedDates[0];
     const currentDate = new Date();
     if (selectedDate < currentDate) {
@@ -22,11 +22,20 @@ const options = {
       document.getElementById('start-button').disabled = false;
     }
   }
-};
+};*/
+onClose(selectedDates) {
+  const selectedDate = selectedDates[0];
+  if (selectedDate <= new Date()) {
+    alert("Please choose a date in the future");
+    document.querySelector('[data-start]').disabled = true;
+  } else {
+    userSelectedDate = selectedDate;
+    document.querySelector('[data-start]').disabled = false;
+  }
 
+}};
 flatpickr("#datetime-picker", options);
 
-// Disable the button by default
 document.getElementById('start-button').disabled = true;
 
 document.getElementById('start-button').addEventListener('click', startTimer);
@@ -47,7 +56,7 @@ function startTimer() {
   updateTimer(selectedDate, timerInterval);
 }
 
-function updateTimer(selectedDate, timerInterval) {
+/*function updateTimer(selectedDate, timerInterval) {
   const difference = selectedDate - new Date();
   if (difference <= 0) {
     clearInterval(timerInterval);
@@ -64,7 +73,23 @@ function updateTimer(selectedDate, timerInterval) {
   document.getElementById('hours').textContent = addLeadingZero(hours);
   document.getElementById('minutes').textContent = addLeadingZero(minutes);
   document.getElementById('seconds').textContent = addLeadingZero(seconds);
-}
+}*/
+document.querySelector('[data-start]').addEventListener('click', () => {
+  const intervalId = setInterval(() => {
+    const timeLeft = userSelectedDate - new Date();
+    if (timeLeft <= 0) {
+      clearInterval(intervalId);
+      document.querySelector('[data-start]').disabled = true;
+      document.querySelector('#datetime-picker').disabled = true;
+    } else {
+      const time = convertMs(timeLeft);
+      document.querySelector('[data-days]').textContent = time.days;
+      document.querySelector('[data-hours]').textContent = time.hours;
+      document.querySelector('[data-minutes]').textContent = time.minutes;
+      document.querySelector('[data-seconds]').textContent = time.seconds;
+    }
+  }, 1000);
+});
 
 function convertMs(ms) {
   const second = 1000;
