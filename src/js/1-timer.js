@@ -1,9 +1,11 @@
 
-import flatpickr from "flatpickr";
-import "/flatpickr/dist/flatpickr.min.css";
-import iziToast from "izitoast";
-import "/izitoast/dist/css/iziToast.min.css";
-
+import flatpickr from 'flatpickr';
+// Імпорт стилів для flatpickr
+import 'flatpickr/dist/flatpickr.min.css';
+// Імпорт бібліотеки izitoast для відображення повідомлень
+import iziToast from 'izitoast';
+// Імпорт стилів для izitoast
+import 'izitoast/dist/css/iziToast.css';
 const options = {
   enableTime: true,
   time_24hr: true,
