@@ -9,20 +9,7 @@ const options = {
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  /*onClose(selectedDates) {
-    const selectedDate = selectedDates[0];
-    const currentDate = new Date();
-    if (selectedDate < currentDate) {
-      iziToast.error({
-        title: 'Error',
-        message: 'Please choose a date in the future'
-      });
-      document.getElementById('start-button').disabled = true;
-    } else {
-      document.getElementById('start-button').disabled = false;
-    }
-  }
-};*/
+
 onClose(selectedDates) {
   const selectedDate = selectedDates[0];
   if (selectedDate <= new Date()) {
