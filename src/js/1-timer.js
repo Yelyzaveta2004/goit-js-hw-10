@@ -25,9 +25,9 @@ onClose(selectedDates) {
 }};
 flatpickr("#datetime-picker", options);
 
-document.getElementById('start-button').disabled = true;
+document.querySelector('[data-start]').disabled = true;
 
-document.getElementById('start-button').addEventListener('click', startTimer);
+document.querySelector('[data-start]').addEventListener('click', startTimer);
 
 function startTimer() {
   const selectedDate = new Date(document.getElementById('datetime-picker').value);
@@ -40,7 +40,7 @@ function startTimer() {
     return;
   }
   document.getElementById('datetime-picker').disabled = true;
-  document.getElementById('start-button').disabled = true;
+  document.querySelector('[data-start]').disabled = true;
   const timerInterval = setInterval(() => updateTimer(selectedDate, timerInterval), 1000);
   updateTimer(selectedDate, timerInterval);
 }
@@ -54,14 +54,14 @@ function updateTimer(selectedDate, timerInterval) {
       message: 'Countdown timer has finished!'
     });
     document.getElementById('datetime-picker').disabled = false;
-    document.getElementById('start-button').disabled = true;
+    document.querySelector('[data-start]').disabled = true;
     return;
   }
   const { days, hours, minutes, seconds } = convertMs(difference);
-  document.getElementById('days').textContent = addLeadingZero(days);
-  document.getElementById('hours').textContent = addLeadingZero(hours);
-  document.getElementById('minutes').textContent = addLeadingZero(minutes);
-  document.getElementById('seconds').textContent = addLeadingZero(seconds);
+  document.getElementById('[data-days]').textContent = addLeadingZero(days);
+  document.getElementById('[data-hours]').textContent = addLeadingZero(hours);
+  document.getElementById('[data-minutes]').textContent = addLeadingZero(minutes);
+  document.getElementById('[data-seconds]').textContent = addLeadingZero(seconds);
 }
 
 
