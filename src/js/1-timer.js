@@ -1,4 +1,6 @@
 
+// Ваш JavaScript код
+
 import flatpickr from 'flatpickr';
 // Імпорт стилів для flatpickr
 import 'flatpickr/dist/flatpickr.min.css';
@@ -8,22 +10,24 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.css';
 
 let userSelectedDate; // Змінна для зберігання обраної дати
+
 const options = {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
 
-onClose(selectedDates) {
-  const selectedDate = selectedDates[0];
-  if (selectedDate <= new Date()) {
-    alert("Please choose a date in the future");
-    document.querySelector('[data-start]').disabled = true;
-  } else {
-    userSelectedDate = selectedDate;
-    document.querySelector('[data-start]').disabled = false;
+  onClose(selectedDates) {
+    const selectedDate = selectedDates[0];
+    if (selectedDate <= new Date()) {
+      alert("Please choose a date in the future");
+      document.querySelector('[data-start]').disabled = true;
+    } else {
+      userSelectedDate = selectedDate;
+      document.querySelector('[data-start]').disabled = false; // Робимо кнопку активною
+    }
   }
-}};
+};
 
 flatpickr("#datetime-picker", options);
 
@@ -60,12 +64,11 @@ function updateTimer(selectedDate, timerInterval) {
     return;
   }
   const { days, hours, minutes, seconds } = convertMs(difference);
-  document.getElementById('[data-days]').textContent = addLeadingZero(days);
-  document.getElementById('[data-hours]').textContent = addLeadingZero(hours);
-  document.getElementById('[data-minutes]').textContent = addLeadingZero(minutes);
-  document.getElementById('[data-seconds]').textContent = addLeadingZero(seconds);
+  document.getElementById('data-days').textContent = addLeadingZero(days);
+  document.getElementById('data-hours').textContent = addLeadingZero(hours);
+  document.getElementById('data-minutes').textContent = addLeadingZero(minutes);
+  document.getElementById('data-seconds').textContent = addLeadingZero(seconds);
 }
-
 
 function convertMs(ms) {
   const second = 1000;
