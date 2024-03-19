@@ -6,6 +6,8 @@ import 'flatpickr/dist/flatpickr.min.css';
 import iziToast from 'izitoast';
 // Імпорт стилів для izitoast
 import 'izitoast/dist/css/iziToast.css';
+
+let userSelectedDate; // Змінна для зберігання обраної дати
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -21,8 +23,8 @@ onClose(selectedDates) {
     userSelectedDate = selectedDate;
     document.querySelector('[data-start]').disabled = false;
   }
-
 }};
+
 flatpickr("#datetime-picker", options);
 
 document.querySelector('[data-start]').disabled = true;
