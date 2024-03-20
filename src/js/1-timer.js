@@ -18,11 +18,15 @@ const options = {
   onClose(selectedDates) {
     const selectedDate = selectedDates[0];
     if (selectedDate <= new Date()) {
-      alert("Please choose a date in the future");
+      iziToast.error({
+        title: 'Error',
+        message: 'Please choose a date in the future'
+      });
+      
       document.querySelector('[data-start]').disabled = true;
     } else {
       userSelectedDate = selectedDate;
-      document.querySelector('[data-start]').disabled = false; // Робимо кнопку активною
+      document.querySelector('[data-start]').disabled = false; 
     }
   }
 };
