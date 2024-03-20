@@ -1,6 +1,4 @@
 
-// Ваш JavaScript код
-
 import flatpickr from 'flatpickr';
 // Імпорт стилів для flatpickr
 import 'flatpickr/dist/flatpickr.min.css';
